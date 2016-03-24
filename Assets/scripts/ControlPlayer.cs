@@ -39,6 +39,21 @@ public class ControlPlayer : MonoBehaviour
             Input.GetAxis("Vertical") * velocity * Time.deltaTime,
             0
         ), Space.World);
+
+        // RANGE OF MOVEMENT FOR THE PLAYER
+        Vector3 posPlayer  = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
+        float screenWidth  = Camera.main.pixelWidth;
+        float screenHeight = Camera.main.pixelHeight;
+        float radiusPlayer = 18f;
+
+        this.gameObject.transform.position = Camera.main.ScreenToWorldPoint(
+            new Vector3(
+                Mathf.Clamp(posPlayer.x, radiusPlayer, screenWidth - radiusPlayer),
+                Mathf.Clamp(posPlayer.y, radiusPlayer, screenHeight - radiusPlayer),
+                0
+            )
+        );
+        this.gameObject.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, 0);
     }
 
     private void rotatePlayer()

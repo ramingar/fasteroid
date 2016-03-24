@@ -54,12 +54,11 @@ public class ControlPlayer : MonoBehaviour
         float b = Vector2.Distance(playerPosition, mousePosition);                                            // hypotenuse (podríamos aplicar pitágoras... pero Unity tiene una función que nos lo calcula)
         float angle = Mathf.Acos((float) (((a * a) + (b * b) - (c * c)) / (2.0 * a * b))) * 180 / Mathf.PI;   // "(* 180 / Mathf.PI)" -> convert from radians to degrees
 
-        if (c < 0)                                                                                            // it's over 180º, that is, cursor is below our player
-        {
+        if (c < 0) {                                                                                          // it's over 180º, that is, cursor is below our player
             angle = 180 + (180 - angle);                                                                      // we add the excess of degrees to 180º
         }
 
-        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);							      // apply the angle to the rotation
+        this.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);                               // apply the angle to the rotation
     }
 
     private void shootBullet()

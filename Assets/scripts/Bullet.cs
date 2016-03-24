@@ -9,9 +9,9 @@ public class Bullet : MonoBehaviour {
     void Start ()
     {
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         this.transform.Translate(0, Time.deltaTime * this.velocity, 0, Space.Self);
     }

@@ -14,5 +14,23 @@ public class Bullet : MonoBehaviour {
     void Update ()
     {
         this.transform.Translate(0, Time.deltaTime * this.velocity, 0, Space.Self);
+
+        // Destroy the bullet when it is out of bounds of screen
+        if (isOutOfScreen()) {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private bool isOutOfScreen ()
+    {
+        Vector3 posbullet  = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
+        float screenWidth  = Camera.main.pixelWidth;
+        float screenHeight = Camera.main.pixelHeight;
+
+        if (posbullet.x < 0 || posbullet.x > screenWidth || posbullet.y < 0 || posbullet.y > screenHeight ) {
+            return true;
+        }
+
+        return false;
     }
 }

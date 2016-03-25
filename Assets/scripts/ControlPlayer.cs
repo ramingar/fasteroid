@@ -7,6 +7,9 @@ public class ControlPlayer : MonoBehaviour
     private float velocity = 15;
 
     [SerializeField]
+    private float radiusPlayer = 18f;
+
+    [SerializeField]
     private GameObject cannon;
 
     [SerializeField]
@@ -44,12 +47,12 @@ public class ControlPlayer : MonoBehaviour
         Vector3 posPlayer  = Camera.main.WorldToScreenPoint(this.gameObject.transform.position);
         float screenWidth  = Camera.main.pixelWidth;
         float screenHeight = Camera.main.pixelHeight;
-        float radiusPlayer = 18f;
+        
 
         this.gameObject.transform.position = Camera.main.ScreenToWorldPoint(
             new Vector3(
-                Mathf.Clamp(posPlayer.x, radiusPlayer, screenWidth - radiusPlayer),
-                Mathf.Clamp(posPlayer.y, radiusPlayer, screenHeight - radiusPlayer),
+                Mathf.Clamp(posPlayer.x, this.radiusPlayer, screenWidth  - this.radiusPlayer),
+                Mathf.Clamp(posPlayer.y, this.radiusPlayer, screenHeight - this.radiusPlayer),
                 0
             )
         );

@@ -15,6 +15,9 @@ public class ControlPlayer : MonoBehaviour
     [SerializeField]
     private GameObject bullet;
 
+    [SerializeField]
+    private GameObject explosion;
+
     // Use this for initialization
     void Start ()
     {
@@ -31,6 +34,18 @@ public class ControlPlayer : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) {
             this.shootBullet();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ContactPoint contact = collision.contacts[0];
+        if ("Enemy" == collision.gameObject.tag)
+        {
+            Vector3 posCollision = contact.point;
+            Quaternion rotCollision = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Instantiate(explosion, posCollision, rotCollision);
+            Destroy(gameObject);
         }
     }
 

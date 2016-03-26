@@ -15,24 +15,13 @@ public class Enemy001SuicideDrone : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        Vector3 positionPlayer = GameObject.Find("Player").gameObject.transform.position;
-        this.gameObject.transform.position = new Vector3(
-            Mathf.Lerp(this.gameObject.transform.position.x, positionPlayer.x, velocity * Time.deltaTime),
-            Mathf.Lerp(this.gameObject.transform.position.y, positionPlayer.y, velocity * Time.deltaTime),
-            0
-        );
+        if (GameObject.Find("Player")) {
+            this.movement();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        /*
-        ContactPoint contact = collision.contacts[0];
-        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        var pos: Vector3 = contact.point;
-        Instantiate(explosionPrefab, pos, rot);
-        Destroy(gameObject);
-        */
-
         ContactPoint contact    = collision.contacts[0];
         if ("bullet" == collision.gameObject.tag) {
             Vector3 posCollision = contact.point;
@@ -40,5 +29,15 @@ public class Enemy001SuicideDrone : MonoBehaviour {
             Instantiate(explosion, posCollision, rotCollision);
             Destroy(gameObject);
         }
+    }
+
+    private void movement()
+    {
+        Vector3 positionPlayer = GameObject.Find("Player").gameObject.transform.position;
+        this.gameObject.transform.position = new Vector3(
+            Mathf.Lerp(this.gameObject.transform.position.x, positionPlayer.x, velocity * Time.deltaTime),
+            Mathf.Lerp(this.gameObject.transform.position.y, positionPlayer.y, velocity * Time.deltaTime),
+            0
+        );
     }
 }

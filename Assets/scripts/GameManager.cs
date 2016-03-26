@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 
     private void setEnemies ()
     {
+        /*
         if (5 == ((int)Time.realtimeSinceStartup))
         {
             this.instantiateEnemy001();
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
         {
             this.instantiateEnemy001();
         }
+        */
     }
 
     private void instantiateEnemy001()

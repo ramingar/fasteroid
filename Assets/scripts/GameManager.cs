@@ -19,22 +19,22 @@ public class GameManager : MonoBehaviour {
 
     private void setEnemies ()
     {
-        /*
-        if (5 == ((int)Time.realtimeSinceStartup))
+        
+        if (5 == ((int)Time.realtimeSinceStartup * 1.0f))
         {
             this.instantiateEnemy001();
         }
 
-        if (10 == ((int)Time.realtimeSinceStartup))
+        if (10 == ((int)Time.realtimeSinceStartup * 1.0f))
         {
             this.instantiateEnemy001();
         }
 
-        if (15 == ((int)Time.realtimeSinceStartup))
+        if (15 == ((int)Time.realtimeSinceStartup * 1.0f))
         {
             this.instantiateEnemy001();
         }
-        */
+        
         
     }
 

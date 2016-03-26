@@ -34,7 +34,7 @@ public class Enemy001SuicideDrone : MonoBehaviour {
         */
 
         ContactPoint contact    = collision.contacts[0];
-        if ("bullet" == collision.other.tag) {
+        if ("bullet" == collision.gameObject.tag) {
             Vector3 posCollision = contact.point;
             Quaternion rotCollision = Quaternion.FromToRotation(Vector3.up, contact.normal);
             Instantiate(explosion, posCollision, rotCollision);

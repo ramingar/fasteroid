@@ -9,33 +9,22 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        InvokeRepeating("setEnemies", 0, 1.0f);
     }
 
     // Update is called once per frame
     void Update ()
     {
-        setEnemies();
     }
 
     private void setEnemies ()
     {
-        
-        if (5 == ((int)Time.realtimeSinceStartup * 1.0f))
-        {
-            this.instantiateEnemy001();
-        }
+        this.instantiateEnemy001();
 
-        if (10 == ((int)Time.realtimeSinceStartup * 1.0f))
-        {
-            this.instantiateEnemy001();
-        }
-
-        if (15 == ((int)Time.realtimeSinceStartup * 1.0f))
-        {
-            this.instantiateEnemy001();
-        }
-        
-        
+        //Debug.Log(Time.realtimeSinceStartup + "-" + Mathf.Round(Time.realtimeSinceStartup));
+        //if (Mathf.Round(Time.realtimeSinceStartup) == 5) {
+        //    this.instantiateEnemy001();
+        //}
     }
 
     private void instantiateEnemy001()

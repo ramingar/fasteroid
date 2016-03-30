@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject enemy001;
 
+    [SerializeField]
+    private GameObject enemy002;
+
     // Use this for initialization
     void Start ()
     {

@@ -22,15 +22,6 @@ public class ShootBullet : MonoBehaviour
         InvokeRepeating("shootBullet", 1, this.timeToShoot);
     }
 
-    private void Update ()
-    {
-        // Look at the player
-        Transform player     = GameObject.Find("Player").gameObject.transform;
-        Vector3   difference = player.position - transform.position;
-        float     rotationZ  = (Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg) - 90f;
-        transform.rotation   = Quaternion.Euler(0.0f, 0.0f, rotationZ);
-    }
-
     private void shootBullet()
     {
         Vector3 positionPlayer = GameObject.Find("Player").gameObject.transform.position;

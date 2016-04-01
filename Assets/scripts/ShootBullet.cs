@@ -24,9 +24,11 @@ public class ShootBullet : MonoBehaviour
 
     private void shootBullet()
     {
-        Vector3 positionPlayer = GameObject.Find("Player").gameObject.transform.position;
-        GameObject bulletClone = (GameObject) Instantiate(this.bullet, cannon.gameObject.transform.position, this.gameObject.transform.rotation);
+        if (GameObject.Find("Player")) {
+            Vector3 positionPlayer = GameObject.Find("Player").gameObject.transform.position;
+            GameObject bulletClone = (GameObject)Instantiate(this.bullet, cannon.gameObject.transform.position, this.gameObject.transform.rotation);
 
-        bullet.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, positionPlayer, Time.deltaTime * this.speed);
+            bullet.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, positionPlayer, Time.deltaTime * this.speed);
+        }
     }
 }

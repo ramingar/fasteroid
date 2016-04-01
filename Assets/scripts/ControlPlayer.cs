@@ -37,13 +37,10 @@ public class ControlPlayer : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        ContactPoint contact = collision.contacts[0];
-        if ("enemy" == collision.gameObject.tag) {
-            Vector3 posCollision = contact.point;
-            Quaternion rotCollision = Quaternion.FromToRotation(Vector3.up, contact.normal);
-            Instantiate(explosion, posCollision, rotCollision);
+        if ("enemy" == collider.gameObject.tag) {
+            Instantiate(explosion, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }

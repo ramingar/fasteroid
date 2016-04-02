@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour {
     [System.Serializable]
     private struct Timeline
     {
-        public string time;
+        public string     time;
         public GameObject enemy;
+        public string spawnPosition;
     }
     [SerializeField]
     private Timeline[] timeline;
@@ -18,20 +19,35 @@ public class GameManager : MonoBehaviour {
     {
         if (this.timelineIndex < timeline.Length && Mathf.Round(Time.time).ToString() == timeline[this.timelineIndex].time)
         {
-            Instantiate(timeline[this.timelineIndex].enemy, this.getSpawnPosition(), Quaternion.identity);
+            Instantiate(timeline[this.timelineIndex].enemy, this.getSpawnPosition(timeline[this.timelineIndex].spawnPosition), Quaternion.identity);
             this.timelineIndex++;
         }
     }
 
-    private Vector3 getSpawnPosition ()
+    private Vector3 getSpawnPosition (string position)
     {
         float   screenWidth     = Camera.main.pixelWidth;
         float   screenHeight    = Camera.main.pixelHeight;
-        Vector3 spawnPosition   = new Vector3(screenWidth, screenHeight, 0);
+        Vector3 spawnPosition   = new Vector3(0f, 0f, 0f);
+        int     positionKey     = 1;
+
+        switch (position) {
+            case "top":
+                positionKey = 1;
+                break;
+            case "left":
+                positionKey = 4;
+                break;
+            case "right":
+                positionKey = 2;
+                break;
+            case "":
+                positionKey = ((int)Random.Range(0f, 4f)) + 1;
+                break;
+        }
 
         // Choose the side where it will spawn
-        switch (((int)Random.Range(0f, 4f)) + 1)
-        {
+        switch (positionKey) {
             case 1:
                 // top side
                 spawnPosition = new Vector3(Random.Range(0f, screenWidth), screenHeight, 0);

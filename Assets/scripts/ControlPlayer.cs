@@ -39,11 +39,22 @@ public class ControlPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if ("enemy" == collider.gameObject.tag) {
+        if ("enemy" == collider.gameObject.tag)
+        {
             Instantiate(explosion, this.gameObject.transform.position, this.gameObject.transform.rotation);
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ("enemy" == collision.gameObject.tag)
+        {
+            Instantiate(explosion, this.gameObject.transform.position, this.gameObject.transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
 
     // FUNCTIONS!!
     private void movePlayer()

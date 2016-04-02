@@ -34,23 +34,25 @@ public class GameManager : MonoBehaviour {
         {
             case 1:
                 // top side
-                spawnPosition = new Vector3(screenWidth, Random.Range(0f, screenHeight), 0);
+                spawnPosition = new Vector3(Random.Range(0f, screenWidth), screenHeight, 0);
                 break;
             case 2:
                 // right side 
-                spawnPosition = new Vector3(Random.Range(0f, screenWidth), screenHeight, 0);
+                spawnPosition = new Vector3(screenWidth, Random.Range(0f, screenHeight), 0);
                 break;
             case 3:
                 // down side
-                spawnPosition = new Vector3(0, Random.Range(0f, screenHeight), 0);
+                //spawnPosition = new Vector3(0, Random.Range(0f, screenHeight), 0);
+                // top side
+                spawnPosition = new Vector3(Random.Range(0f, screenWidth), screenHeight, 0);
                 break;
             case 4:
                 // left side
-                spawnPosition = new Vector3(Random.Range(0f, screenWidth), 0, 0);
+                spawnPosition = new Vector3(0, Random.Range(0f, screenHeight), 0);
                 break;
             case 5:
                 // left side
-                spawnPosition = new Vector3(Random.Range(0f, screenWidth), 0, 0);
+                spawnPosition = new Vector3(0, Random.Range(0f, screenHeight), 0);
                 break;
         }
 

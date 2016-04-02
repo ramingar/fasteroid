@@ -3,13 +3,34 @@ using System.Collections;
 
 public class BulletExplossion : MonoBehaviour {
 
-    void Start ()
+    [SerializeField]
+    private float timeToExplode = 1.5f;
+
+    private bool markToExplode = false;
+
+    void Start()
     {
-        InvokeRepeating("explode", 3f, 0f);
+        InvokeRepeating("explode", this.timeToExplode, 1f);
+        InvokeRepeating("destroy", this.timeToExplode + 0.5f, 1f);
     }
 
-    private void explode ()
+    void Update()
     {
-        this.gameObject.transform.localScale.Scale(this.gameObject.transform.localScale);
+        if (this.markToExplode)
+        {
+            this.gameObject.transform.localScale += new Vector3(0.3f, 0.3f, 0.3f);
+            Destroy(this.gameObject.GetComponent<Bullet>());
+        }
+    }
+
+
+    private void explode()
+    {
+        this.markToExplode = true;
+    }
+
+    private void destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

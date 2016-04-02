@@ -1,33 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
-    
-    [System.Serializable]
-    private struct Timeline
-    {
-        public string time;
-        public GameObject enemy;
-    }
+public class GameManagerAsteroids : MonoBehaviour {
+
     [SerializeField]
-    private Timeline[] timeline;
+    private GameObject enemy001;
 
-    private int timelineIndex = 0;
-    
-    private void Update ()
+
+    // Use this for initialization
+    void Start()
     {
-        if (this.timelineIndex < timeline.Length && Mathf.Round(Time.time).ToString() == timeline[this.timelineIndex].time)
-        {
-            Instantiate(timeline[this.timelineIndex].enemy, this.getSpawnPosition(), Quaternion.identity);
-            this.timelineIndex++;
-        }
+        InvokeRepeating("setEnemies", 0, 1.0f);
+    }
+    
+    private void setEnemies()
+    {
+        this.instantiateEnemy001();
     }
 
-    private Vector3 getSpawnPosition ()
+    private void instantiateEnemy001()
     {
-        float   screenWidth     = Camera.main.pixelWidth;
-        float   screenHeight    = Camera.main.pixelHeight;
-        Vector3 spawnPosition   = new Vector3(screenWidth, screenHeight, 0);
+        Vector3 spawnPosition = this.getSpawnPosition();
+        Instantiate(enemy001, spawnPosition, Quaternion.identity);
+    }
+
+    private Vector3 getSpawnPosition()
+    {
+        float screenWidth = Camera.main.pixelWidth;
+        float screenHeight = Camera.main.pixelHeight;
+        Vector3 spawnPosition = new Vector3(screenWidth, screenHeight, 0);
 
         // Choose the side where it will spawn
         switch (((int)Random.Range(0f, 4f)) + 1)

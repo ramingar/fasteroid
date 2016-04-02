@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    [SerializeField]
     private float velocity = 35f;
 
     // Use this for initialization
